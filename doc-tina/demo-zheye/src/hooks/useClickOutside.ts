@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-11-16 20:08:02
+ * @LastEditTime: 2020-11-17 14:36:52
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \doc-tina\doc-tina\demo-zheye\src\hooks\useClickOutside.ts
+ */
 import { ref, onMounted, onUnmounted, Ref } from 'vue'
 
 function useClickOutside(elementRef: Ref<null|HTMLElement>){

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-11 18:49:43
- * @LastEditTime: 2020-11-16 07:59:29
+ * @LastEditTime: 2020-11-17 17:26:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \zheye\src\App.vue
@@ -9,61 +9,95 @@
 <template>
   <div class='container'>
     <global-header :user="user"></global-header>
-    <column-list :list='list'></column-list>
+    <form action="">
+      <div class="mb-3"><label class="form-label">邮箱地址</label>
+        <validate-input :rules="emailRules" v-model="emailVal"></validate-input>
+       {{emailVal}}
+      </div>
+      <div class="mb-3">
+        <label
+          for="exampleInputEmail1"
+          class="form-label"
+        >邮箱地址</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          v-model="emailRef.val"
+          @blur="validateEmail"
+        >
+        <div
+          class="form-test"
+          v-if="emailRef.err"
+        >{{emailRef.message}}</div>
+
+      </div>
+      <div class="mb-3">
+        <label
+          for="exampleInputPassword1"
+          class="form-label"
+        >密码</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+        >
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >Submit</button>
+    </form>
 
   </div>
 </template>
 <script lang='ts'>
-import { defineComponent } from "vue";
+import { defineComponent, reactive,ref } from "vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ColumnList, { ColumnsProps } from "./components/ColumnList.vue";
 import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
 
-const testData: ColumnsProps[] = [
-  {
-    id: 1,
-    title: "test1的专栏",
-    description: "这是的test1专栏，有一段非常有意思的简介，可以更新一下欧",
-    avatar:
-      "http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5ee22dd58b3c4520912b9470.jpg?x-oss-process=image/resize,m_pad,h_100,w_100",
-  },
-  {
-    id: 2,
-    title: "test2的专栏",
-    description: "这是的test2专栏，有一段非常有意思的简介，可以更新一下欧",
-    avatar:
-      "http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5ee22dd58b3c4520912b9470.jpg?x-oss-process=image/resize,m_pad,h_100,w_100",
-  },
-  {
-    id: 3,
-    title: "test2的专栏",
-    description: "这是的test2专栏，有一段非常有意思的简介，可以更新一下欧",
-    avatar:
-      "http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5ee22dd58b3c4520912b9470.jpg?x-oss-process=image/resize,m_pad,h_100,w_100",
-  },
-  {
-    id: 4,
-    title: "test2的专栏",
-    description: "这是的test2专栏，有一段非常有意思的简介，可以更新一下欧",
-    avatar:
-      "http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5ee22dd58b3c4520912b9470.jpg?x-oss-process=image/resize,m_pad,h_100,w_100",
-  },
-];
+import ValidateInput, { RulesProp } from "./components/ValidateInput.vue";
 const userData: UserProps = {
   isLogin: true,
   name: "Tina",
   id: 158656,
 };
+const emailRules: RulesProp = [
+  { type: 'required', message: '电子邮箱地址不能为空' },
+  { type: 'email', message: '请输入正确的电子邮箱格式' }
+]
+const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 export default defineComponent({
   name: "APP",
   setup() {
+    const emailVal = ref("Tina")
+    const emailRef = reactive({
+      val: "",
+      err: false,
+      message: "",
+    });
+    const validateEmail = () => {
+      if (emailRef.val.trim() === "") {
+        emailRef.err = true;
+        emailRef.message = "邮箱地址错误~";
+      } else if (!emailReg.test(emailRef.val)) {
+        emailRef.err = true;
+        emailRef.message = "请输入正确邮箱";
+      }
+    };
     return {
-      list: testData,
       user: userData,
+      emailRef,
+      emailRules,
+      emailVal,
+      validateEmail,
     };
   },
   components: {
-    ColumnList,
+    ValidateInput,
     GlobalHeader,
   },
 });

@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-16 18:54:20
+ * @LastEditTime: 2020-11-17 14:39:07
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \doc-tina\doc-tina\demo-zheye\src\components\DropsDown.vue
+-->
 <!--  -->
 <template>
   <div
@@ -33,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, ref, watch,onMounted,onUnmounted } from "vue";
 import DropsdownItem from "./DropdownItem.vue";
 import useClickOutside from "../hooks/useClickOutside";
 export default defineComponent({
@@ -50,7 +58,7 @@ export default defineComponent({
     const toggleOpen = () => {
       isOpten.value = !isOpten.value;
     };
-    const dropdownRef = ref<null | HTMLElement>(null);
+    const dropdownRef = ref<null|HTMLElement>(null);
     const isClickOutside = useClickOutside(dropdownRef);
 
     watch(isClickOutside, () => {
@@ -63,7 +71,7 @@ export default defineComponent({
       isOpten,
       toggleOpen,
       // 返回和 ref 同名的响应式对象，就可以拿到对应的 dom 节点
-      isClickOutside,
+      dropdownRef,
     };
   },
 });
