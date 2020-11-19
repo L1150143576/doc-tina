@@ -8,75 +8,75 @@
 -->
 <template>
   <div class="validate-input-container pb-3">
-    <input type="text"
+    <input
+      type="text"
       class="form-control"
-      :class="{'is-invalid': inputRef.error}"
-       :value="inputRef.val"
-       @input="updateValue"
-      @blur="validateInput"
+      :class="{ 'is-invalid': inputRef.error }"
+      :value="inputRef.val"
+      @input="updateValue"
       v-bind="$attrs"
-    >
-    <span v-if="inputRef.error" class="invalid-feedback">{{inputRef.message}}</span>
+    />
+    <span v-if="inputRef.error" class="invalid-feedback">{{
+      inputRef.message
+    }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType,onMounted } from 'vue'
-import {emitter} from "./ValidateForm.vue"
-const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+import { defineComponent, reactive, PropType, onMounted } from "vue";
+import { emitter } from "./ValidateForm.vue";
+const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 interface RuleProp {
-  type: 'required' | 'email';
+  type: "required" | "email";
   message: string;
 }
-export type RulesProp = RuleProp[]
+export type RulesProp = RuleProp[];
 export default defineComponent({
   props: {
     rules: Array as PropType<RulesProp>,
-    modalValue:String
+    modalValue: String,
   },
-  setup(props,context) {
+  setup(props, context) {
     const inputRef = reactive({
-      val: props.modalValue||'',
+      val: props.modalValue || "",
       error: false,
-      message: ''
-    })
-    const  updateValue = (e: KeyboardEvent)=>{
-       const targetValue=(e.target as HTMLInputElement).value
-       inputRef.val=targetValue
-       context.emit("update:modelValue",targetValue)
-    }
+      message: "",
+    });
+    const updateValue = (e: KeyboardEvent) => {
+      const targetValue = (e.target as HTMLInputElement).value;
+      inputRef.val = targetValue;
+      context.emit("update:modelValue", targetValue);
+    };
     const validateInput = () => {
-     
       if (props.rules) {
-        const allPassed = props.rules.every(rule => {
-          let passed = true
-          inputRef.message = rule.message
+        const allPassed = props.rules.every((rule) => {
+          let passed = true;
+          inputRef.message = rule.message;
           switch (rule.type) {
-            case 'required':
-              passed = (inputRef.val.trim() !== '')
-              break
-            case 'email':
-              passed = emailReg.test(inputRef.val)
-              break
+            case "required":
+              passed = inputRef.val.trim() !== "";
+              break;
+            case "email":
+              passed = emailReg.test(inputRef.val);
+              break;
             default:
-              break
+              break;
           }
-          return passed
-        })
-        inputRef.error = !allPassed
-        return allPassed
+          return passed;
+        });
+        inputRef.error = !allPassed;
+        return allPassed;
       }
-      return true
-    }
-     onMounted(()=>{
-       console.log(inputRef.val)
-       emitter.emit('form-item-created', validateInput)
-    })
+      return true;
+    };
+    onMounted(() => {
+      emitter.emit("form-item-created", validateInput);
+    });
     return {
       inputRef,
       validateInput,
-      updateValue
-    }
-  }
-})
+      updateValue,
+    };
+  },
+});
 </script>
