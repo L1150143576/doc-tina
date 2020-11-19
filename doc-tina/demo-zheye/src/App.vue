@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-11 18:49:43
- * @LastEditTime: 2020-11-17 17:26:27
+ * @LastEditTime: 2020-11-19 17:29:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \zheye\src\App.vue
@@ -9,56 +9,38 @@
 <template>
   <div class='container'>
     <global-header :user="user"></global-header>
-    <form action="">
+    <validate-form action=""  @form-submit="submit" ref="inputRef">
       <div class="mb-3"><label class="form-label">邮箱地址</label>
-        <validate-input :rules="emailRules" v-model="emailVal"></validate-input>
+        <validate-input :rules="emailRules" v-model="emailVal" placeholder="请输入相对的值" :modalValue="emailVal" type="text"></validate-input>
        {{emailVal}}
       </div>
-      <div class="mb-3">
-        <label
-          for="exampleInputEmail1"
-          class="form-label"
-        >邮箱地址</label>
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          v-model="emailRef.val"
-          @blur="validateEmail"
-        >
-        <div
-          class="form-test"
-          v-if="emailRef.err"
-        >{{emailRef.message}}</div>
-
-      </div>
+     
       <div class="mb-3">
         <label
           for="exampleInputPassword1"
           class="form-label"
         >密码</label>
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-        >
+            <validate-input :rules="emailRules" v-model="emailVal" placeholder="请输入相对的值" type="text"></validate-input>
       </div>
-
-      <button
+      <template #submit>
+        <span class="btn btn-danger">Submit</span>
+      </template>
+    </validate-form>
+      <!-- <button
         type="submit"
         class="btn btn-primary"
-      >Submit</button>
-    </form>
+      >Submit</button> -->
+
 
   </div>
 </template>
 <script lang='ts'>
-import { defineComponent, reactive,ref } from "vue";
+import { defineComponent, reactive,ref,onMounted } from "vue";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import ColumnList, { ColumnsProps } from "./components/ColumnList.vue";
 import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
-
+import ValidateForm from "./components/ValidateForm.vue"
 import ValidateInput, { RulesProp } from "./components/ValidateInput.vue";
 const userData: UserProps = {
   isLogin: true,
@@ -73,12 +55,18 @@ const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
 export default defineComponent({
   name: "APP",
   setup() {
-    const emailVal = ref("Tina")
+    const inputRef=ref<any>()
+    const emailVal = ref("")
     const emailRef = reactive({
       val: "",
       err: false,
       message: "",
     });
+   
+    const submit=(e: boolean)=>{
+      console.log(inputRef.value)
+      console.log("result："+e)
+    }
     const validateEmail = () => {
       if (emailRef.val.trim() === "") {
         emailRef.err = true;
@@ -91,14 +79,18 @@ export default defineComponent({
     return {
       user: userData,
       emailRef,
+      inputRef,
       emailRules,
+       submit,
       emailVal,
       validateEmail,
     };
   },
   components: {
+   
     ValidateInput,
     GlobalHeader,
+    ValidateForm
   },
 });
 </script>

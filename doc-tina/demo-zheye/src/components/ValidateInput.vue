@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-17 15:22:12
- * @LastEditTime: 2020-11-17 17:30:33
+ * @LastEditTime: 2020-11-19 17:26:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \doc-tina\doc-tina\demo-zheye\src\components\ValidateInput.vue
@@ -14,13 +14,15 @@
        :value="inputRef.val"
        @input="updateValue"
       @blur="validateInput"
+      v-bind="$attrs"
     >
     <span v-if="inputRef.error" class="invalid-feedback">{{inputRef.message}}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType } from 'vue'
+import { defineComponent, reactive, PropType,onMounted } from 'vue'
+import {emitter} from "./ValidateForm.vue"
 const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 interface RuleProp {
   type: 'required' | 'email';
@@ -62,8 +64,14 @@ export default defineComponent({
           return passed
         })
         inputRef.error = !allPassed
+        return allPassed
       }
+      return true
     }
+     onMounted(()=>{
+       console.log(inputRef.val)
+       emitter.emit('form-item-created', validateInput)
+    })
     return {
       inputRef,
       validateInput,
