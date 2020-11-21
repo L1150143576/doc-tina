@@ -1,18 +1,14 @@
 <!--  -->
-<template>
-	<column-detail></column-detail>
-</template>
+<template></template>
 
 <script lang="ts">
-import ColumnDetail from '@/components/ColumnDetail.vue'
 import { defineComponent } from 'vue'
+
 export default defineComponent({
 	setup() {
-		return {
-			ColumnDetail
-		}
+		return {}
 	},
-	components: { ColumnDetail }
+	components: {},
 })
 </script>
 <style lang="less" scoped>

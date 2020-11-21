@@ -32,25 +32,28 @@ import { useRouter } from 'vue-router'
 import ValidateForm from '@/components/ValidateForm.vue'
 import ValidateInput, { RulesProp } from '../components/ValidateInput.vue'
 import ColumnList, { ColumnsProps } from '../components/ColumnList.vue'
+import { useStore } from 'vuex'
+import { GlobalDataProps } from '../store'
 const emailRules: RulesProp = [
 	{ type: 'required', message: '电子邮箱地址不能为空' },
-	{ type: 'email', message: '请输入正确的电子邮箱格式' }
+	{ type: 'email', message: '请输入正确的电子邮箱格式' },
 ]
 const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 export default defineComponent({
 	setup() {
+		const store = useStore<GlobalDataProps>()
 		const inputRef = ref<any>()
 		const emailVal = ref('')
 		const emailRef = reactive({
 			val: '',
 			err: false,
-			message: ''
+			message: '',
 		})
 		const router = useRouter()
 		const submit = (e: boolean) => {
 			if (e) {
-				router.push({ name: 'Home', params: { id: 1 } })
+				store.commit('login')
 			}
 		}
 		const validateEmail = () => {
@@ -68,12 +71,12 @@ export default defineComponent({
 			emailRules,
 			submit,
 			emailVal,
-			validateEmail
+			validateEmail,
 		}
 	},
 	components: {
 		ValidateInput,
-		ValidateForm
-	}
+		ValidateForm,
+	},
 })
 </script>
