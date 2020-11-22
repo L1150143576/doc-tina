@@ -8,6 +8,7 @@
 -->
 <template>
 	<div class="home">
+		<h2>{{ biggerColunm }}</h2>
 		<column-list :list="list"></column-list>
 	</div>
 </template>
@@ -23,9 +24,10 @@ export default defineComponent({
 	setup() {
 		const store = useStore<GlobalDataProps>()
 		const testData = computed(() => store.state.columns)
-		console.log(testData)
+		const biggerColunm = computed(() => store.getters.biggerColumnLen)
 		return {
 			list: testData,
+			biggerColunm,
 		}
 	},
 	components: {

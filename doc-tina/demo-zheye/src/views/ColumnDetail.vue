@@ -29,16 +29,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { GlobalDataProps } from '@/store'
+import { defineComponent, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 import PostList from '../components/PostList.vue'
-import { testData, testPosts } from '../mock/testData'
 export default defineComponent({
 	setup() {
 		const route = useRoute()
+		const store = useStore<GlobalDataProps>()
 		const currentId = +route.params.id
-		const column = testData.find((c) => c.id === currentId)
-		const list = testPosts.filter((post) => post.columnId === currentId)
+		const column = computed(() => store.getters.getColumnById(currentId))
+		const list = computed(() => store.getters.getPostByCid(currentId))
+		console.log(list)
 		return {
 			column,
 			list,

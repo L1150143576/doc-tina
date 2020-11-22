@@ -54,6 +54,7 @@ export default defineComponent({
 		const submit = (e: boolean) => {
 			if (e) {
 				store.commit('login')
+				router.push('/')
 			}
 		}
 		const validateEmail = () => {
