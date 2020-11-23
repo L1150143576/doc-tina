@@ -22,7 +22,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType,onMounted } from 'vue'
+import {getColumn} from "@/api"
 export interface ColumnsProps {
 	id: number
 	title: string
@@ -36,9 +37,18 @@ export default defineComponent({
 			type: Array as PropType<ColumnsProps[]>,
 			required: true
 		}
+	},
+	setup (props) {
+		const getColumnList=async ()=>{
+			const res=await getColumn({pageindex:1})
+			console.log(res)
+		}
+	onMounted(()=>{
+  getColumnList()
+	})
+	return {
+		getColumn
 	}
-	// setup (props) {
-
-	// }
+	}
 })
 </script>

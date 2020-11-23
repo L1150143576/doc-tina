@@ -19,7 +19,7 @@
 				v-model="emailVal"
 				placeholder="请输入相对的值"
 				type="text"
-			></validate-input>
+			></validate-input>``
 		</div>
 		<template #submit>
 			<span class="btn btn-danger">Submit</span>
