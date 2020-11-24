@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-
+import { computed, defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
+import { getColumn } from '@/api'
 import ColumnList, { ColumnsProps } from '../components/ColumnList.vue'
 import { useStore } from 'vuex'
 import { GlobalDataProps } from '../store/index'
@@ -23,10 +23,23 @@ export default defineComponent({
 	name: 'Home',
 	setup() {
 		const store = useStore<GlobalDataProps>()
+		const state=reactive({
+		 list: [] ,
+		})
+
 		const testData = computed(() => store.state.columns)
 		const biggerColunm = computed(() => store.getters.biggerColumnLen)
+		const getColumnList = async () => {
+			const res = await getColumn({ pageindex: 1 })
+		state.list = res.list
+			console.log(state.list)
+		}
+		onMounted(async () => {
+			await getColumnList()
+		})
+		const refData=toRefs(state)
 		return {
-			list: testData,
+			...refData,
 			biggerColunm,
 		}
 	},

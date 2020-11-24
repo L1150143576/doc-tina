@@ -16,28 +16,14 @@ module.exports = {
       poll: 1000
     },
     proxy: {
-      '/dev': {
-        target: 'http://api.vikingship.xyz',
+      '/api': {
+        target: 'http://api.vikingship.xyz/api',
         changeOrigin: true,
         pathRewrite: {
-          '^/dev': ''
+          '^/api': ''
         }
       },
-      '/portal/file': {
-        target: 'http://192.168.22.92',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/portal/file': ''
-        }
-      },
-      '/prod': {
-        target: 'https://work.dyg.com.cn',
-        secure: true, // https
-        changeOrigin: true,
-        pathRewrite: {
-          '^/prod': ''
-        }
-      }
+  
     }
   },
   chainWebpack: config => {

@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.165",
     "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^5.0.0-alpha1",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.20",
     "markdown-it": "^11.0.0",
     "mitt": "^2.1.0",
     "view-design": "^4.4.0",

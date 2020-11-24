@@ -13,7 +13,10 @@ export interface PostProps {
     createdAt: string,
     columnId: number
 }
-
+export interface imgProps{
+    _id:string,
+    url:string
+}
 export const testData: columnProps[] = [
     {
       id: 1,

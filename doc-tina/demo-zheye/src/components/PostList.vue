@@ -21,7 +21,7 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, computed } from 'vue'
+import { defineComponent, PropType, computed, reactive, toRefs } from 'vue'
 import { PostProps } from '../mock/testData'
 export default defineComponent({
 	props: {
@@ -31,9 +31,13 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const posts = props.list
+		const state=reactive({
+			posts:[]
+		})
+		state.posts = props.list
+		console.log(		state.posts )
 		return {
-			posts,
+			...toRefs(state),
 		}
 	},
 })
