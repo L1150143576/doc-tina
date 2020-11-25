@@ -16,12 +16,13 @@
 				>
 			</li>
 			<li class="list-inline-item">
-				<a href="#" class="btn btn-outline-light my-2">注册</a>
+					<router-link to="/signup" class="btn btn-outline-light my-2"
+					>注册</router-link>
 			</li>
 		</ul>
 		<ul v-else class="list-inline mb-0">
 			<li class="list-inline-item">
-				<drops-down :title="`你好,${user.name}`"></drops-down>
+				<drops-down :title="`你好,${user.nickName}`"></drops-down>
 			</li>
 		</ul>
 	</nav>

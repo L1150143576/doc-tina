@@ -25,7 +25,7 @@
 				<div class="text-muted">{{ column.description }}</div>
 			</div>
 		</div>
-		<post-list :list="post"></post-list>
+		<post-list :list="post" :num="2"></post-list>
 	</div>
 </template>
 

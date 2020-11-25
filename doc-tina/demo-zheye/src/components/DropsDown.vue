@@ -26,7 +26,7 @@
 				><a href="#" class="dropdown-item">编辑资料</a></dropsdown-item
 			>
 			<dropsdown-item
-				><a href="#" class="dropdown-item">退出登录</a></dropsdown-item
+				><router-link to="/login" class="dropdown-item">退出登录</router-link></dropsdown-item
 			>
 		</ul>
 	</div>

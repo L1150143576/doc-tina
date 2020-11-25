@@ -16,6 +16,12 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/signup',
+    name: 'signup',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Signup.vue'),
+
+  },
+  {
     path: '/detail/:id',
     name: 'Detail',
     component: () => import(/* webpackChunkName: "about" */ '../views/ColumnDetail.vue')
@@ -44,7 +50,7 @@ const router = createRouter({
 })
 router.beforeEach((to,from,next)=>{
   // const isLogin=computed(()=>store.state.user.isLogin)
-  console.log(to)
+  
   if(!store.state.user.isLogin&&to.meta.requieLogin){
     next({name:'login'})
   

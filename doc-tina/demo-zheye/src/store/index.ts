@@ -1,19 +1,33 @@
 import { createStore } from 'vuex'
 import { testData, testPosts, columnProps } from "../mock/testData"
-interface userProps {
-  isLogin: boolean,
-  name?: string,
-  id?: number,
-  columnId?: number
+export interface ResponseType<P = {}> {
+  code: number;
+  msg: string;
+  data: P;
 }
-interface ImageProps {
+interface userProps {
+  isLogin: boolean;
+  nickName?: string;
+  _id?: string;
+  column?: string;
+  email?: string;
+  avatar?: ImageProps;
+  description?: string;
+}
+export interface ImageProps {
   _id?: string,
   url?: string,
   createdA?: string
 }
+export interface GlobalErrorProps {
+  status: boolean;
+  message?: string;
+}
 export interface GlobalDataProps {
   columns: columnProps[],
-  user: userProps
+  user: userProps,
+  error: GlobalErrorProps,
+  token:string;
 }
 export interface PostProps {
   _id?: string;
@@ -21,35 +35,36 @@ export interface PostProps {
   excerpt?: string;
   content?: string;
   createdAt?: string;
-  image:ImageProps,
+  image?: ImageProps | string;
   columnId?: number;
+  column: string;
+  author?: string | userProps;
   isHTML?: boolean;
 }
 export default createStore<GlobalDataProps>({
   state: {
     columns: testData,
-    user: { isLogin: true, name: 'JSTina', columnId: 1 }
+    user: { isLogin: false},
+    error: { status: false },
+    token:''
 
   },
   getters: {
     biggerColumnLen(state) {
       return state.columns.filter((c) => c.id > 2).length
     },
-    getColumnById: (state) => (id: number) => {
-      return state.columns.find(c => c.id == id)
-    },
-    getPostByCid: (state) => (cid: number) => {
-      return state.posts.filter(c => c.columnId == cid)
-    }
+
+    token:(state)=>state.user.token
   },
   mutations: {
     login(state) {
       state.user = { ...state.user, isLogin: true, name: 'JSTina' }
 
     },
-    createPost(state, newPost) {
-      state.posts.push(newPost)
+    setUser(state,user){
+     state.user={...state.user,...user}
     }
+
   },
   actions: {
   },

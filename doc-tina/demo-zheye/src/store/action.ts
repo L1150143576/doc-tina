@@ -6,5 +6,6 @@ export const actions = {
             type: ACTION_SET_LOADING,
             payload: load
         }
-    }
+    },
+
 }
