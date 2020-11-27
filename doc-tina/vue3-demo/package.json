@@ -21,7 +21,8 @@
     "view-design": "^4.4.0",
     "vue": "^3.0.0-beta.1",
     "vue-router": "^4.0.0-beta.2",
-    "vuex": "^4.0.0-beta.4"
+    "vuex": "^4.0.0-beta.4",
+    "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {
     "@types/markdown-it": "^10.0.2",
