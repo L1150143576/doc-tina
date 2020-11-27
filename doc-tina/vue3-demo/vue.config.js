@@ -16,14 +16,14 @@ module.exports = {
       poll: 1000
     },
     proxy: {
-      '/api': {
-        target: 'http://api.vikingship.xyz/api',
+      '/test': {
+        target: 'http://api.vikingship.xyz',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/test': '/'
         }
       },
-  
+
     }
   },
   chainWebpack: config => {
@@ -50,7 +50,7 @@ module.exports = {
   }
 }
 
-function addStyleResource(rule) {
+function addStyleResource (rule) {
   rule
     .use('style-resource')
     .loader('style-resources-loader')

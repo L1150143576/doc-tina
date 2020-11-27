@@ -6,7 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: \doc-tina\doc-tina\demo-zheye\src\router\index.ts
  */
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import store from "../store"
 const routes: Array<RouteRecordRaw> = [
@@ -59,7 +59,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory('/'),
   routes
 })
 router.beforeEach((to, from, next) => {

@@ -11,7 +11,7 @@ import { showFullScreenLoading, tryHideFullScreenLoading, paramFilter } from './
 import store from '../store'
 import createMessage from '@/components/createMessage'
 const request = axios.create({
-  baseURL: "/api"
+  baseURL: "/test"
 })
 /**
  * 添加请求拦截
@@ -19,13 +19,15 @@ const request = axios.create({
 
 request.interceptors.request.use(
   (config: any) => {
-
+    const { withBaseURL = true } = config
     const token = store.getters['token']
     if (config.showLoading) {
       showFullScreenLoading()
     }
     // header 添加 token
     if (token) config.headers.common.Authorization = `Bearer ${token}`
+    // 添加 baseURL
+    if (withBaseURL) config.baseURL += "/api"
     return config
   },
   err => {
@@ -59,4 +61,6 @@ request.interceptors.response.use(
     return Promise.reject(error.message)
   }
 )
+
+
 export default request
