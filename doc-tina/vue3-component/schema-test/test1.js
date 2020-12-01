@@ -32,7 +32,7 @@ const ajv = new Ajv({ allErrors: true })
 require('ajv-errors')(ajv)
 // ajv.addFormat('test', (data) => {
 //   console.log(data, '===')
-//   return data === 'hahaha'
+//   return data === 'hahahhahaaa'
 // })
 ajv.addKeyword('test', {
   // macro () {
@@ -75,7 +75,7 @@ ajv.addKeyword('test', {
 var validate = ajv.compile(schema);
 
 var valid = validate({
-  name: "hahaha",
+  name: "hahahhahahha",
   age: 18,
   pets: ['mimi', 'aa'],
   isWorker: true
