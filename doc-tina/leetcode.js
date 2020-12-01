@@ -244,7 +244,7 @@ var postorder = function (root) {
   var res = [];
   post(root);
   return res;
-  function post(root) {
+  function post (root) {
     if (!root) return;
     if (root.children) {
       for (var i = 0; i < root.children.length; i++) {
@@ -277,7 +277,7 @@ var preorder = function (root) {
   var res = [];
   post(root);
   return res;
-  function post(root) {
+  function post (root) {
     if (!root) return;
     res.push(root.val);
     if (root.children) {
@@ -510,20 +510,20 @@ var peakIndexInMountainArray = function (A) {
  * @param {number[]} nums
  * @return {number}
  */
-var arrayPairSum = function(nums) {
-  var arr=nums.concat().sort((a,b)=>a-b)
-    console.log(arr)
-    var index=0;
-    var sum=0;
-    while(index%2){
-      if(index<4){
-           console.log(arr.length)
-      sum+=arr[index]
+var arrayPairSum = function (nums) {
+  var arr = nums.concat().sort((a, b) => a - b)
+  console.log(arr)
+  var index = 0;
+  var sum = 0;
+  while (index % 2) {
+    if (index < 4) {
+      console.log(arr.length)
+      sum += arr[index]
       index++;
-      }
-   
     }
-    return sum;
+
+  }
+  return sum;
 };
 // 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
 
@@ -537,24 +537,24 @@ var arrayPairSum = function(nums) {
  * @param {string} s
  * @return {string}
  */
-var reverseWords = function(s) {
-     //第一种解法
-    // var arr= s.split(" ");
-    // var str="";
-    // for(var i=0;i<arr.length;i++){
-    //   str+=arr[i].split("").reverse().join("");
-    //   i<arr.length-1?str+=" ":""
-    // }
-    // return str;
-    
-    //第二种解法
-   // return s.split("").reverse().join('').split(" ").reverse().join(" ")
-    //第三种解法
-     for(let i = 0;i < s.length/2;i++){
-       [s[i],s[s.length-1-i]] = [s[s.length-1-i],s[i]]
-     }   
+var reverseWords = function (s) {
+  //第一种解法
+  // var arr= s.split(" ");
+  // var str="";
+  // for(var i=0;i<arr.length;i++){
+  //   str+=arr[i].split("").reverse().join("");
+  //   i<arr.length-1?str+=" ":""
+  // }
+  // return str;
 
-      return s;
+  //第二种解法
+  // return s.split("").reverse().join('').split(" ").reverse().join(" ")
+  //第三种解法
+  for (let i = 0; i < s.length / 2; i++) {
+    [s[i], s[s.length - 1 - i]] = [s[s.length - 1 - i], s[i]]
+  }
+
+  return s;
 
 };
 
@@ -585,7 +585,7 @@ var reverseWords = function(s) {
  * @param {number[]} nums
  * @return {TreeNode}
  */
-var sortedArrayToBST = function(nums) {
+var sortedArrayToBST = function (nums) {
   if (nums.length == 0) return null;
   let cen = Math.floor(nums.length / 2)
   let node = new TreeNode(nums[cen])
@@ -616,16 +616,16 @@ var sortedArrayToBST = function(nums) {
  * @param {number[]} A
  * @return {number[]}
  */
-var sortArrayByParity = function(A) {
-  var arr1=new Array(),arr2=new Array();
-    for(var i=0;i<A.length;i++){
-      if(A[i]%2==0){
-          arr1.push(A[i])
-      }else{
-        arr2.push(A[i])
-      }
+var sortArrayByParity = function (A) {
+  var arr1 = new Array(), arr2 = new Array();
+  for (var i = 0; i < A.length; i++) {
+    if (A[i] % 2 == 0) {
+      arr1.push(A[i])
+    } else {
+      arr2.push(A[i])
     }
-    return arr1.concat(arr2)
+  }
+  return arr1.concat(arr2)
 };
 
 // 给定一个正整数，输出它的补数。补数是对该数的二进制表示取反。
@@ -648,7 +648,7 @@ var sortArrayByParity = function(A) {
  * @param {number} num
  * @return {number}
  */
-var findComplement = function(num) {
+var findComplement = function (num) {
   //   var arr=num.toString(2).split("");
   // let  newArr=arr.map((item)=>{
   //   result=(item==1)?'0':'1'
@@ -656,14 +656,14 @@ var findComplement = function(num) {
   // })
 
   // return parseInt(newArr.join(""),2)
-   var maxIndex=num.toString(2).split("").length-1;
-   var res=1;
-   for(var i=0;i<maxIndex;i++){
-    res*=2;
-   }
-   var sum=res*2-1;
-   return sum^num;
-    
+  var maxIndex = num.toString(2).split("").length - 1;
+  var res = 1;
+  for (var i = 0; i < maxIndex; i++) {
+    res *= 2;
+  }
+  var sum = res * 2 - 1;
+  return sum ^ num;
+
 };
 
 // SQL架构
@@ -717,28 +717,27 @@ var findComplement = function(num) {
  * @param {Node} root
  * @return {number}
  */
-var maxDepth = function(root) {
-if(!root) return 0                // 如果没有节点, 直接返回0
+var maxDepth = function (root) {
+  if (!root) return 0                // 如果没有节点, 直接返回0
   let num = 0                       // 记录深度
-  if(root.children){
-    root.children.forEach(item=>{   // 遍历有几个节点
+  if (root.children) {
+    root.children.forEach(item => {   // 遍历有几个节点
       let max = maxDepth(item)      // 递归调用
       num = Math.max(max, num)      // 对比当前和之前得到的 深度, 保留大的
     })
   }
-  return num + 1   
+  return num + 1
 
 
-  if(!root) return 0;
-    let depth=0;
-  if(root.children)
-  {
-   for(var i=0;i<root.children.length;i++){
-    let num=maxDepth(root.children[i])
-    depth = Math.max(num, depth) 
+  if (!root) return 0;
+  let depth = 0;
+  if (root.children) {
+    for (var i = 0; i < root.children.length; i++) {
+      let num = maxDepth(root.children[i])
+      depth = Math.max(num, depth)
+    }
   }
-  }   
-  return depth+1;
+  return depth + 1;
 };
 
 
@@ -762,31 +761,31 @@ if(!root) return 0                // 如果没有节点, 直接返回0
  * @param {number[]} nums2
  * @return {number[]}
  */
-var intersection = function(nums1, nums2) {
-    // var arr=new Set();
-    // var arr1=new Set();
-    // nums1.map((item)=>{
-    //   return arr.add(item)
-    // })
-    // nums2.map((e)=>{
-    //   return arr1.add(e)
-    // })
-    // let length=arr.size>arr1.size?arr.size:arr1.size
+var intersection = function (nums1, nums2) {
+  // var arr=new Set();
+  // var arr1=new Set();
+  // nums1.map((item)=>{
+  //   return arr.add(item)
+  // })
+  // nums2.map((e)=>{
+  //   return arr1.add(e)
+  // })
+  // let length=arr.size>arr1.size?arr.size:arr1.size
 
-    // let newArr=new Array();
-    
-    //    if(arr.length>arr1.length){
-    //     arr.forEach((item)=>{
-    //       nums2.includes(item)?newArr.push(item):""
-    //     })
-          
-    //    }else{
-    //       arr1.forEach((item)=>{
-    //       nums1.includes(item)?newArr.push(item):""
-    //     })
-    //    }
-    
-    return  [...new Set(nums1)].filter((v)=>nums2.includes(v))
+  // let newArr=new Array();
+
+  //    if(arr.length>arr1.length){
+  //     arr.forEach((item)=>{
+  //       nums2.includes(item)?newArr.push(item):""
+  //     })
+
+  //    }else{
+  //       arr1.forEach((item)=>{
+  //       nums1.includes(item)?newArr.push(item):""
+  //     })
+  //    }
+
+  return [...new Set(nums1)].filter((v) => nums2.includes(v))
 };
 
 // 给出一个函数  f(x, y) 和一个目标结果 z，请你计算方程 f(x,y) == z 所有可能的正整数 数对 x 和 y。
@@ -845,16 +844,16 @@ var intersection = function(nums1, nums2) {
  * @param {integer} z
  * @return {integer[][]}
  */
-var findSolution = function(customfunction, z) {
-      let list = []
-    for(let i=1; i <= z; i++){
-      for(let j = 1 ;j <= z; j++){
-        if(customfunction.f(i,j)===z){
-          list.push([i,j])
-        }
+var findSolution = function (customfunction, z) {
+  let list = []
+  for (let i = 1; i <= z; i++) {
+    for (let j = 1; j <= z; j++) {
+      if (customfunction.f(i, j) === z) {
+        list.push([i, j])
       }
     }
-    return list；
+  }
+  return list；
 };
 
 // 给定一个整数数组 A，对于每个整数 A[i]，我们可以选择任意 x 满足 -K <= x <= K，并将 x 加到 A[i] 中。
@@ -894,49 +893,49 @@ var findSolution = function(customfunction, z) {
  * @param {number} K
  * @return {number}
  */
-var smallestRangeI = function(A, K) {
+var smallestRangeI = function (A, K) {
   //解法1
-    // var newArr=[]
-    // A.sort((a,b)=>a-b)
-    // var base=A[0]+K
-    // for(var i=0;i<A.length;i++){
-    //   if(i==0){
-    //      newArr.push(A[i]+K)
-    //   }else if(A[i]>base){
-    //     if(A[i]-base>K){
-    //      console.log(base)
-    //        newArr.push(A[i]-K)
-    //     }else{
-    //        newArr.push(K)
-    //     }
-    //   }else{
-    //         newArr.push(base)
-    //      }
-    // }
-    // return newArr;
+  // var newArr=[]
+  // A.sort((a,b)=>a-b)
+  // var base=A[0]+K
+  // for(var i=0;i<A.length;i++){
+  //   if(i==0){
+  //      newArr.push(A[i]+K)
+  //   }else if(A[i]>base){
+  //     if(A[i]-base>K){
+  //      console.log(base)
+  //        newArr.push(A[i]-K)
+  //     }else{
+  //        newArr.push(K)
+  //     }
+  //   }else{
+  //         newArr.push(base)
+  //      }
+  // }
+  // return newArr;
 
-    //解法2
-    //    A.sort((a,b)=>a-b);
-    // var len=A.length;
-    // var base=A[0]+K
-    // if(len>1){
-    //  if(A[len-1]-base>K){
-    //       return A[len-1]-base-K
-    //     }else{
-    //       return 0;
-    //     }
-    //  }else{
-    //       return A[len-1]-base
-    //    }
+  //解法2
+  //    A.sort((a,b)=>a-b);
+  // var len=A.length;
+  // var base=A[0]+K
+  // if(len>1){
+  //  if(A[len-1]-base>K){
+  //       return A[len-1]-base-K
+  //     }else{
+  //       return 0;
+  //     }
+  //  }else{
+  //       return A[len-1]-base
+  //    }
 
-    //解法3
-    let max = Math.max.apply(null, A)
-    let min = Math.min.apply(null, A)
-    if((max-K) < (min+K)){
-        return 0
-    }else{
-        return max-min-2*K
-    }
+  //解法3
+  let max = Math.max.apply(null, A)
+  let min = Math.min.apply(null, A)
+  if ((max - K) < (min + K)) {
+    return 0
+  } else {
+    return max - min - 2 * K
+  }
 
 };
 
@@ -977,25 +976,25 @@ var smallestRangeI = function(A, K) {
 /**
  * @param {number[]} A
  */
-var RLEIterator = function(A) {
-    this.list = A;//list:[ 3, 8, 0, 9, 2, 5 ]
+var RLEIterator = function (A) {
+  this.list = A;//list:[ 3, 8, 0, 9, 2, 5 ]
 };
 
 /** 
  * @param {number} n
  * @return {number}
  */
-RLEIterator.prototype.next = function(n) {
-    var arr = []
-    while(this.list.length && n > this.list[0]) {
-        n -= this.list[0]
-        arr = this.list.splice(0, 2)
-    }
-    if(n <= this.list[0]) {
-        this.list[0] = this.list[0] - n
-        return this.list[1]
-    }
-    return -1
+RLEIterator.prototype.next = function (n) {
+  var arr = []
+  while (this.list.length && n > this.list[0]) {
+    n -= this.list[0]
+    arr = this.list.splice(0, 2)
+  }
+  if (n <= this.list[0]) {
+    this.list[0] = this.list[0] - n
+    return this.list[1]
+  }
+  return -1
 };
 
 /** 
@@ -1018,22 +1017,22 @@ RLEIterator.prototype.next = function(n) {
 
 
 //打印杨辉三角
-var arrSan=function(n){
-  var row=n;
-  var k=2;
-  var temp=[1];
+var arrSan = function (n) {
+  var row = n;
+  var k = 2;
+  var temp = [1];
 
-  for(let i=1;i<=row;i++){
-    var arr=new Array();
-    for(let j=0;j<i;j++){
-          if(j==0||j==i){
-            arr.push(1)
-          }else{
-            arr.push(temp[j-1]+temp[j])
-            console.log(temp)
-          }
-          temp=arr;
-         
+  for (let i = 1; i <= row; i++) {
+    var arr = new Array();
+    for (let j = 0; j < i; j++) {
+      if (j == 0 || j == i) {
+        arr.push(1)
+      } else {
+        arr.push(temp[j - 1] + temp[j])
+        console.log(temp)
+      }
+      temp = arr;
+
     }
   }
 }
@@ -1079,16 +1078,16 @@ arrSan(8)
  * @param {number[]} nums
  * @return {number}
  */
-var removeDuplicates = function(nums) {
-    var i=0;
-    while(i<nums.length){
-       if(nums[i]==nums[i-2]){
-      nums.splice(i,1);
-    }else{
+var removeDuplicates = function (nums) {
+  var i = 0;
+  while (i < nums.length) {
+    if (nums[i] == nums[i - 2]) {
+      nums.splice(i, 1);
+    } else {
       i++
     }
-    }
-    return nums;
+  }
+  return nums;
 };
 
 
@@ -1134,40 +1133,40 @@ var removeDuplicates = function(nums) {
  * @param {number[]} speed
  * @return {number}
  */
-var carFleet = function(target, position, speed) {
-   var count=0;
-   var q=0
-   var arr=JSON.parse(JSON.stringify(position)).sort((a,b)=>b-a);
-   if(arr.length>1){
-    for(var i=0;i<position.length;i++){
-   
-    if(i<position.length-1){
-       var index=position.indexOf(arr[i]);
-      var index1=position.indexOf(arr[i+1])
-       if((target-position[index])/speed[index]>=(target-position[index1])/speed[index1]&&q=0){
-        count++
-      }else if((target-position[index])/speed[index]<(target-position[index1])/speed[index1]){
-        q=0
-      }
-    }else{
-        var index=position.indexOf(arr[i]);
-       var index1=position.indexOf(arr[i-1])
-     
-        if((target-position[index])/speed[index]>=(target-position[index1])/speed[index1]&&q=0){
-        count++
+var carFleet = function (target, position, speed) {
+  var count = 0;
+  var q = 0
+  var arr = JSON.parse(JSON.stringify(position)).sort((a, b) => b - a);
+  if (arr.length > 1) {
+    for (var i = 0; i < position.length; i++) {
+
+      if (i < position.length - 1) {
+        var index = position.indexOf(arr[i]);
+        var index1 = position.indexOf(arr[i + 1])
+        if ((target - position[index]) / speed[index] >= (target - position[index1]) / speed[index1] && q= 0) {
+          count++
+        }else if ((target - position[index]) / speed[index] < (target - position[index1]) / speed[index1]) {
+          q = 0
         }
-       
-        
+      } else {
+        var index = position.indexOf(arr[i]);
+        var index1 = position.indexOf(arr[i - 1])
+
+        if ((target - position[index]) / speed[index] >= (target - position[index1]) / speed[index1] && q= 0) {
+          count++
+        }
+
+
+      }
+
     }
-   
-   }
-   return count
-   }else if(arr.length==1){
-      return 1;
-   }
- 
-   return 0;
-    
+    return count
+  } else if (arr.length == 1) {
+    return 1;
+  }
+
+  return 0;
+
 };
 
 // 给定一个用字符串表示的整数的嵌套列表，实现一个解析它的语法分析器。
@@ -1242,32 +1241,32 @@ var carFleet = function(target, position, speed) {
  * @param {string} s
  * @return {NestedInteger}
  */
-var deserialize = function(s) {
-    let ws = [], chars = [], cache = [];
-    s = s + "#";
-    for(let i=0; i < s.length; ++i) {
-        if(chars.length && isNaN(s[i])) {
-            let num_node = new NestedInteger(); 
-            num_node.setInteger(chars.join("") | 0);
-            ws.push(num_node);
-            chars.length = 0;
-        }
-        switch(s[i]) {
-            case "#":
-            case ",": break;
-            case "[": ws.push("$"); break;
-            case "]":
-                let e, list_node = new NestedInteger();
-                while((e = ws.pop()) != "$") cache.push(e);
-                while(cache.length) list_node.add(cache.pop()); 
-                ws.push(list_node);
-                break;
-            default:
-                chars.push(s[i]);
-                break;
-        }
+var deserialize = function (s) {
+  let ws = [], chars = [], cache = [];
+  s = s + "#";
+  for (let i = 0; i < s.length; ++i) {
+    if (chars.length && isNaN(s[i])) {
+      let num_node = new NestedInteger();
+      num_node.setInteger(chars.join("") | 0);
+      ws.push(num_node);
+      chars.length = 0;
     }
-    return ws[0];
+    switch (s[i]) {
+      case "#":
+      case ",": break;
+      case "[": ws.push("$"); break;
+      case "]":
+        let e, list_node = new NestedInteger();
+        while ((e = ws.pop()) != "$") cache.push(e);
+        while (cache.length) list_node.add(cache.pop());
+        ws.push(list_node);
+        break;
+      default:
+        chars.push(s[i]);
+        break;
+    }
+  }
+  return ws[0];
 };
 
 // 如果出现下述两种情况，交易 可能无效：
@@ -1307,26 +1306,26 @@ var deserialize = function(s) {
  * @return {string[]}
  */
 
-var invalidTransactions = function(transactions) {
-      var indexs=[]
-    var arr=[]
-    transactions.sort();
-    var str=transactions.join(",").split(",")
-    for(let i=0;i<transactions.length;i++){
-         var temp=transactions[i].split(',')
-         if(temp[2]>1000) indexs.push(transactions[i])
-        arr.push(temp)
-    }
-    for(let i=0;i<arr.length;i++){
-      for(let j=0;j<arr.length;j++){
-        if(arr[i][0]==arr[j][0]&&Math.abs(arr[i][1]-arr[j][1])<=60&&arr[i][3]!=arr[j][3]){
-             indexs.push(transactions[j])
-        }
+var invalidTransactions = function (transactions) {
+  var indexs = []
+  var arr = []
+  transactions.sort();
+  var str = transactions.join(",").split(",")
+  for (let i = 0; i < transactions.length; i++) {
+    var temp = transactions[i].split(',')
+    if (temp[2] > 1000) indexs.push(transactions[i])
+    arr.push(temp)
+  }
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[i][0] == arr[j][0] && Math.abs(arr[i][1] - arr[j][1]) <= 60 && arr[i][3] != arr[j][3]) {
+        indexs.push(transactions[j])
       }
     }
-   var newArr=[]
-    new Set(indexs).forEach((item)=>newArr.push(item))
-    return newArr
+  }
+  var newArr = []
+  new Set(indexs).forEach((item) => newArr.push(item))
+  return newArr
 };
 
 
@@ -1348,7 +1347,7 @@ var invalidTransactions = function(transactions) {
  * @param {number[]} nums
  * @return {number[]}
  */
-var findDisappearedNumbers = function(nums) {
+var findDisappearedNumbers = function (nums) {
   // var arr=[]
   // for(let i=1;i<=nums.length;i++){
   //     if(nums.indexOf(i)==-1){
@@ -1365,7 +1364,7 @@ var findDisappearedNumbers = function(nums) {
       arr.push(i + 1);
     }
   }
-    return arr
+  return arr
 };
 
 // 给你一个字符串 s ，每一次操作你都可以在字符串的任意位置插入任意字符。
@@ -1411,69 +1410,69 @@ var findDisappearedNumbers = function(nums) {
  * @param {string} s
  * @return {number}
  */
-var minInsertions = function(s) {
-   
-    var str1=s;
-    str2=s.split('').reverse().join('');
-    var len = str2.length
-    var dp = [];
-    for (var i = 0; i <= len; i++) {
-      dp[i] = [];
-      for (var j = 0; j <= len; j++) {
-        if (i == 0 || j == 0) {
-          dp[i][j] = 0;
-          continue;
-        }
-        if (str1[i - 1] == str2[j - 1]) {
-          dp[i][j] = dp[i - 1][j - 1] + 1;
-        } else {
-          dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-        }
+var minInsertions = function (s) {
+
+  var str1 = s;
+  str2 = s.split('').reverse().join('');
+  var len = str2.length
+  var dp = [];
+  for (var i = 0; i <= len; i++) {
+    dp[i] = [];
+    for (var j = 0; j <= len; j++) {
+      if (i == 0 || j == 0) {
+        dp[i][j] = 0;
+        continue;
+      }
+      if (str1[i - 1] == str2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
       }
     }
-  
-    return s.length-dp[len][len];
+  }
+
+  return s.length - dp[len][len];
 }
 
-        
-    //精简版
-    function minInsertions(string s) {
-        let  N = s.length;
-        dp[] //默认都初始化为0，逐个计算，不会错误使用默认值
-        for (int d = 1; d < N; ++d) { //步长从1开始
-            for (int i = 0, j = i + d; j < N; ++i, ++j) {
-                dp[i][j] = min(dp[i+1][j], dp[i][j-1]) + 1;
-                if (s[i] == s[j]) {
-                    dp[i][j] = d == 1 ? 0 : dp[i+1][j-1]; //这个是子集，一定会比另两个长的短
-                }
-                //printf("dp[%d][%d]=%d\t", i, j, dp[i][j]);
-            }
-            //cout << endl;
-        }
-        return dp[0][N-1];
-    }   
 
-    function min(a,b){
-      return a<=b?a:b;
+//精简版
+function minInsertions (string s) {
+  let N = s.length;
+  dp[] //默认都初始化为0，逐个计算，不会错误使用默认值
+  for (int d = 1; d < N; ++d) { //步长从1开始
+    for (int i = 0, j = i + d; j < N; ++i, ++j) {
+      dp[i][j] = min(dp[i + 1][j], dp[i][j - 1]) + 1;
+      if (s[i] == s[j]) {
+        dp[i][j] = d == 1 ? 0 : dp[i + 1][j - 1]; //这个是子集，一定会比另两个长的短
+      }
+      //printf("dp[%d][%d]=%d\t", i, j, dp[i][j]);
     }
+    //cout << endl;
+  }
+  return dp[0][N - 1];
+}
 
-var minInsertions = function(s) {
-    return dp(s, 0, s.length-1);
+function min (a, b) {
+  return a <= b ? a : b;
+}
+
+var minInsertions = function (s) {
+  return dp(s, 0, s.length - 1);
 };
 
-function dp(str,i,j){
-  if(i>=j){
+function dp (str, i, j) {
+  if (i >= j) {
     return 0;
   }
-  if(str[i]==str[j]){
-    return dp(str, i+1,j-1);
+  if (str[i] == str[j]) {
+    return dp(str, i + 1, j - 1);
   } else {
-    return min(dp(str,i,j-1),dp(str,i+1,j))+1
+    return min(dp(str, i, j - 1), dp(str, i + 1, j)) + 1
   }
 }
 
-function min(a,b){
-  return a<=b?a:b;
+function min (a, b) {
+  return a <= b ? a : b;
 }
 
 
@@ -1511,18 +1510,18 @@ function min(a,b){
  * @param {number[]} chips
  * @return {number}
  */
-var minCostToMoveChips = function(chips) { 
-      var odd=0,even=0
-     for(let i=0;i<chips.length;i++){
-        if(chips[i]%2==0){
-           even++
-        }else{
-          odd++
-        }
-     }
-     if(odd>even)
-      return even;
-    return odd;
+var minCostToMoveChips = function (chips) {
+  var odd = 0, even = 0
+  for (let i = 0; i < chips.length; i++) {
+    if (chips[i] % 2 == 0) {
+      even++
+    } else {
+      odd++
+    }
+  }
+  if (odd > even)
+    return even;
+  return odd;
 };
 
 
@@ -1538,28 +1537,28 @@ var minCostToMoveChips = function(chips) {
  * @param {number} target
  * @return {number}
  */
-var threeSumClosest = function(nums, target) {
-  nums.sort((a,b)=>(a-b))
-  var ans=nums[0]+nums[1]+nums[2]
-  for(let i=0;i<nums.length;++){
+var threeSumClosest = function (nums, target) {
+  nums.sort((a, b) => (a - b))
+  var ans = nums[0] + nums[1] + nums[2]
+  for (let i = 0; i < nums.length; ++) {
 
-    let start=i+1;
-    end=nums.length-1;
-    while(start<end){
-      let sum=nums[i]+nums[start]+nums[end];
-      if(Math.abs(target-sum)<Math.abs(target-ans)){
-        ans=sum;
-        if(sum>target){
+    let start = i + 1;
+    end = nums.length - 1;
+    while (start < end) {
+      let sum = nums[i] + nums[start] + nums[end];
+      if (Math.abs(target - sum) < Math.abs(target - ans)) {
+        ans = sum;
+        if (sum > target) {
           end--
-        }else if(sum<target){
+        } else if (sum < target) {
           start++
-        }else{
+        } else {
           return ans
         }
       }
     }
   }
-   return ans;
+  return ans;
 };
 
 
@@ -1590,36 +1589,36 @@ var threeSumClosest = function(nums, target) {
  * @param {string[]} wordDict
  * @return {boolean}
  */
-var wordBreak = function(s, wordDict) {
+var wordBreak = function (s, wordDict) {
 
-   var map = {};
-    var maxWordLength = 0;
-    var dp = [];
-    var flag = true;
-    wordDict.forEach(word=>{
-        map[word] = true;
-        maxWordLength = Math.max(maxWordLength,word.length);
-    });
-    for(var i = 0;i<s.length;i++){
-        dp[i] = false;
-        var j = i - 1;
-        if(i<maxWordLength && map[s.substr(0,i+1)]){
-            dp[i] = true;
-            flag = false;
-            continue;
-        }
-        if(flag && i>=maxWordLength){
-            return false;
-        }
-        while(i-j<=maxWordLength){
-            if(dp[j] && map[s.substr(j+1,i-j)]){
-                dp[i] = true;
-                break;
-            }
-            j--;
-        }
+  var map = {};
+  var maxWordLength = 0;
+  var dp = [];
+  var flag = true;
+  wordDict.forEach(word => {
+    map[word] = true;
+    maxWordLength = Math.max(maxWordLength, word.length);
+  });
+  for (var i = 0; i < s.length; i++) {
+    dp[i] = false;
+    var j = i - 1;
+    if (i < maxWordLength && map[s.substr(0, i + 1)]) {
+      dp[i] = true;
+      flag = false;
+      continue;
     }
-    return dp[s.length-1];
+    if (flag && i >= maxWordLength) {
+      return false;
+    }
+    while (i - j <= maxWordLength) {
+      if (dp[j] && map[s.substr(j + 1, i - j)]) {
+        dp[i] = true;
+        break;
+      }
+      j--;
+    }
+  }
+  return dp[s.length - 1];
 
 };
 
@@ -1722,18 +1721,18 @@ var wordBreak = function(s, wordDict) {
 // Java
 
 
-var wordBreak = function(s, wordDict) {
-     var dp=[];
-     dp[0]=true;
-     for(let i=0;i<=s.length;i++){
-       for(j=0;j<i;j++){
-          if (dp[j] && wordDict.includes(s.substring(j, i))) {
-                    dp[i] = true;
-                    break;
-                }
-       }
-     }
-    return dp[s.length];
+var wordBreak = function (s, wordDict) {
+  var dp = [];
+  dp[0] = true;
+  for (let i = 0; i <= s.length; i++) {
+    for (j = 0; j < i; j++) {
+      if (dp[j] && wordDict.includes(s.substring(j, i))) {
+        dp[i] = true;
+        break;
+      }
+    }
+  }
+  return dp[s.length];
 }
 
 
@@ -1827,13 +1826,13 @@ var wordBreak = function(s, wordDict) {
 
 // 1 <= nums.length <= 100
 // 1 <= nums[i] <= 100
-var arr=[]
-arr.sort((a,b)=>a-b)
-for(let i=0;i<arr.length;i++){
-  for(let j=0;j<arr.length;j++){
-    if(i<j&&arr[i]===arr[j]){
-         console.log(arr[i],arr[j])
-      
+var arr = []
+arr.sort((a, b) => a - b)
+for (let i = 0; i < arr.length; i++) {
+  for (let j = 0; j < arr.length; j++) {
+    if (i < j && arr[i] === arr[j]) {
+      console.log(arr[i], arr[j])
+
     }
   }
 }
@@ -1846,7 +1845,7 @@ for(let i=0;i<arr.length;i++){
 
 // 最后返回的列表可以是任意顺序的。而且注意返回的两个数字中间（逗号之后）都有一个空格。
 
- 
+
 
 // 示例 1:
 // 输入: "(123)"
@@ -1866,36 +1865,37 @@ for(let i=0;i<arr.length;i++){
 // 1.0 是不被允许的。
 //1.超过0整数开头不能等于0，所有结尾不能等于0
 //2.
-var str="(00011)"
-var arr=str.split("")
- var temp=""
-for(var i=1;i<arr.length-2;i++){
+var str = "(00011)"
+var arr = str.split("")
+var temp = ""
+for (var i = 1; i < arr.length - 2; i++) {
 
-if(i==1){
-temp=arr[i-1]+arr[i]
-var temArr= str.split(temp)[1].split("")
-if(temArr[1]==0){
-	 console.log(temp+','+temArr[0]+'.'+str.split(temp+temArr[0])[1])
-	}else{var sum=""
-		for(var i=0;i<temArr.length;i++){
-			sum+=arr[i]
-          console.log(temp+','+sum+'.'+str.split(temp)[1].split("").split(sum)[1])
-	}
-	}
-	
-}else if(arr[i]=='0'){
-	if(arr[i-1]=="0"){
-		console.log(temp+','+str.split(temp)[1])
-	}else{
-		temp+=arr[i]
-		console.log(temp+','+str.split(temp)[1])
-	}
- 
+  if (i == 1) {
+    temp = arr[i - 1] + arr[i]
+    var temArr = str.split(temp)[1].split("")
+    if (temArr[1] == 0) {
+      console.log(temp + ',' + temArr[0] + '.' + str.split(temp + temArr[0])[1])
+    } else {
+      var sum = ""
+      for (var i = 0; i < temArr.length; i++) {
+        sum += arr[i]
+        console.log(temp + ',' + sum + '.' + str.split(temp)[1].split("").split(sum)[1])
+      }
+    }
 
-}else{
-	// temp+=arr[i]
-	console.log(str.split(arr[i])[0]+','+str.split(arr[i])[1])
-}
+  } else if (arr[i] == '0') {
+    if (arr[i - 1] == "0") {
+      console.log(temp + ',' + str.split(temp)[1])
+    } else {
+      temp += arr[i]
+      console.log(temp + ',' + str.split(temp)[1])
+    }
+
+
+  } else {
+    // temp+=arr[i]
+    console.log(str.split(arr[i])[0] + ',' + str.split(arr[i])[1])
+  }
 }
 
 
@@ -1904,7 +1904,7 @@ if(temArr[1]==0){
 
 // 请返回 nums 的动态和。
 
- 
+
 
 // 示例 1：
 
@@ -1920,23 +1920,23 @@ if(temArr[1]==0){
 
 // 输入：nums = [3,1,2,10,1]
 // 输出：[3,4,6,16,17]
- 
+
 
 // 提示：
 
 // 1 <= nums.length <= 1000
 // -10^6 <= nums[i] <= 10^6
-var nums = [1,2,3,4]
-var sum=new Array()
-for(let i=0;i<nums.length;i++){
-  i==0?sum.push(nums[i]):sum.push(nums[i]+sum[i-1])
+var nums = [1, 2, 3, 4]
+var sum = new Array()
+for (let i = 0; i < nums.length; i++) {
+  i == 0 ? sum.push(nums[i]) : sum.push(nums[i] + sum[i - 1])
 }
 console.log(sum)
 
 // 剑指 Offer 58 - II. 左旋转字符串
 // 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
 
- 
+
 
 // 示例 1：
 
@@ -1946,21 +1946,21 @@ console.log(sum)
 
 // 输入: s = "lrloseumgh", k = 6
 // 输出: "umghlrlose"
- 
+
 
 // 限制：
 
 // 1 <= k < s.length <= 10000
-var s="abcdefg"
-console.log(s.slice(0,2))
-console.log(s.slice(2,s.length))
+var s = "abcdefg"
+console.log(s.slice(0, 2))
+console.log(s.slice(2, s.length))
 
 // 剑指 Offer
 // 22. 链表中倒数第k个节点
 // 输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。
 // 例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。
 
- 
+
 
 // 示例：
 
@@ -1970,21 +1970,21 @@ console.log(s.slice(2,s.length))
 
 
 
- // 17. 打印从1到最大的n位数
+// 17. 打印从1到最大的n位数
 // 输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
 
 // 示例 1:
 
 // 输入: n = 1
 // 输出: [1,2,3,4,5,6,7,8,9]
- 
+
 
 // 说明：
 
 // 用返回一个整数列表来代替打印
 // n 为正整数
-var arr=[]
-for(let i=1;i<Math.pow(10,n);i++){
+var arr = []
+for (let i = 1; i < Math.pow(10, n); i++) {
   arr.push(i)
 }
 //是否考虑大数问题？
@@ -1994,7 +1994,7 @@ console.log(arr)
 // 剑指 Offer 05. 替换空格
 // 请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
 
- 
+
 
 // 示例 1：
 
@@ -2005,7 +2005,7 @@ console.log(str.split(" ").join("%20"))
 剑指 Offer 54. 二叉搜索树的第k大节点
 给定一棵二叉搜索树，请找出其中第k大的节点。
 
- 
+
 
 // 示例 1:
 
@@ -2027,7 +2027,7 @@ console.log(str.split(" ").join("%20"))
 //   /
 //  1
 // 输出: 4
- 
+
 
 // 限制：
 
@@ -2052,7 +2052,7 @@ console.log(str.split(" ").join("%20"))
 
 客户的 资产总量 就是他们在各家银行托管的资产数量之和。最富有客户就是 资产总量 最大的客户。
 
- 
+
 
 // 示例 1：
 
@@ -2072,10 +2072,10 @@ console.log(str.split(" ").join("%20"))
 // 第 3 位客户的资产总量 = 8
 // 第 2 位客户是最富有的，资产总量是 10
 // 示例 3：
- 
+
 // 输入：accounts = [[2,8,7],[7,1,3],[1,9,5]]
 // 输出：17
- 
+
 
 // 提示：
 
@@ -2088,15 +2088,51 @@ console.log(str.split(" ").join("%20"))
  * @param {number[][]} accounts
  * @return {number}
  */
-var maximumWealth = function(accounts) {
+var maximumWealth = function (accounts) {
 
-   let max=0
-   for(let m=0;m<accounts.length;m++){
-      var sum=0
-     for(let n=0;n<accounts[m].length;n++){
-         sum+=accounts[m][n]
+  let max = 0
+  for (let m = 0; m < accounts.length; m++) {
+    var sum = 0
+    for (let n = 0; n < accounts[m].length; n++) {
+      sum += accounts[m][n]
     }
-      max=Math.max(max,sum)
-   }
-   return max
+    max = Math.max(max, sum)
+  }
+  return max
 };
+
+
+// 给你一个整数数组 nums，请你将该数组升序排列。
+
+
+
+// 示例 1：
+
+// 输入：nums = [5,2,3,1]
+// 输出：[1,2,3,5]
+// 示例 2：
+
+// 输入：nums = [5,1,1,2,0,0]
+// 输出：[0,0,1,1,2,5]
+
+
+// 提示：
+
+// 1 <= nums.length <= 50000
+// -50000 <= nums[i] <= 50000
+var sortArray = function (nums) {
+  if (nums.length < 1) return nums
+  let index = Math.floor(nums.length / 2)
+  let provid = nums.splice(index, 1)[0],
+    left = [], right = []
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] < provid) {
+      left.push(nums[i])
+    } else {
+      right.push(nums[i])
+    }
+  }
+  return sortArray(left).concat([provid], sortArray(right))
+};
+let nums = [5, 1, 1, 2, 0, 0]
+sortArray(nums)
