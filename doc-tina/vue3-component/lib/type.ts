@@ -1,32 +1,57 @@
-export enum SchemaTypes{
-     'NUMBER'='number',
-     'INTEGER'='integer',
-     'STRING'='string',
-     'OBJECT'='object',
-     'ARRAY'='array',
-     'BOOLEAN'='boolean'
+
+import { PropType } from 'vue'
+export enum SchemaTypes {
+  'NUMBER' = 'number',
+  'INTEGER' = 'integer',
+  'STRING' = 'string',
+  'OBJECT' = 'object',
+  'ARRAY' = 'array',
+  'BOOLEAN' = 'boolean'
 }
 
-type SchemaRef={$ref:string}
-export interface Schema{
-    type:SchemaTypes|string
-    const?:any
-    format?:string
-    default?:any
-    properties?:{
-      [key:string]:Schema|{$ref:string}
-    },
-    items?:Schema|Schema[]|SchemaRef
-    dependencies?:{
-        [key:string]:string[]|Schema|SchemaRef
-    }
-    oneOf?:Schema[]
-    // vjsf?:VueJsonSchemaConfig
-    required?:string[]
-    enum?:any[]
-    enumKeyValues?:any[]
-    additionalProperties?:any
-    additionalItems?:Schema
+type SchemaRef = { $ref: string }
+export interface Schema {
+  type: SchemaTypes | number
+  const?: any
+  format?: string
+  default?: any
+  properties?: {
+    [key: string]: Schema | { $ref: string }
+  },
+  allOf?: Schema[]
+  items?: Schema | Schema[] | SchemaRef
+  dependencies?: {
+    [key: string]: string[] | Schema | SchemaRef
+  }
+  uniqueItems?: any
+  anyOf?: Schema[]
+  oneOf?: Schema[]
+  // vjsf?:VueJsonSchemaConfig
+  required?: string[]
+  enum?: any[]
+  enumKeyValues?: any[]
+  additionalProperties?: any
+  additionalItems?: Schema
 
 
 }
+export const FieldPropsDefine = {
+
+  schema: {
+    type: Object as PropType<Schema>,
+    required: true
+  },
+  value: {
+    type: Number as PropType<number>,
+    required: true
+  },
+  onChange: {
+    type: Function as PropType<(v: any) => void>,
+    required: true
+  },
+  rootSchema: {
+    type: Object as PropType<Schema>,
+    required: true,
+  },
+
+} as const

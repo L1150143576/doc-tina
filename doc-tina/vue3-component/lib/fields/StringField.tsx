@@ -1,7 +1,42 @@
-import {defineComponent} from 'vue'
+import { computed, defineComponent } from 'vue'
+
+import { FieldPropsDefine } from '../type'
+// import { getWidget } from '../theme'
+
 export default defineComponent({
-    name:'StringField',
-   setup(){
-       return ()=><div>String Field</div>
-   }
+  name: 'StringFeild',
+  props: FieldPropsDefine,
+  setup(props) {
+    const handleChange = (v: any) => {
+      // console.log(e)
+      props.onChange(v)
+    }
+
+    // const TextWidgetRef = computed(() => {
+    //   const widgetRef = getWidget(CommonWidgetNames.TextWidget, props)
+    //   return widgetRef.value
+    // })
+
+    // const widgetOptionsRef = computed(() => {
+    //   const { widget, properties, items, ...rest } = props.uiSchema
+    //   return rest
+    // })
+
+    return () => {
+      //   const { rootSchema, errorSchema, ...rest } = props
+
+      //   const TextWidget = TextWidgetRef.value
+
+      //   return (
+      //     <TextWidget
+      //       {...rest}
+      //       errors={errorSchema.__errors}
+      //       onChange={handleChange}
+      //       options={widgetOptionsRef.value}
+      //     />
+      //   )
+
+      return <input type="text" value={props.value as any} onInput={handleChange} />
+    }
+  },
 })

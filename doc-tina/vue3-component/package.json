@@ -11,12 +11,22 @@
     "ajv": "^6.12.6",
     "ajv-errors": "^1.0.1",
     "ajv-i18n": "^3.6.0",
+    "circular-dependency-plugin": "^5.2.2",
     "core-js": "^3.6.5",
+    "jsonpointer": "^4.1.0",
+    "jss": "^10.5.0",
+    "jss-preset-default": "^10.5.0",
+    "lodash.union": "^4.6.0",
+    "monaco-editor": "^0.21.2",
+    "monaco-editor-webpack-plugin": "^2.0.0",
     "vue": "^3.0.0",
+    "vue-jss": "0.0.4",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/json-schema-merge-allof": "^0.6.0",
+    "@types/lodash.union": "^4.6.6",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
@@ -30,6 +40,7 @@
     "@vue/eslint-config-typescript": "^5.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "json-schema-merge-allof": "^0.7.0",
     "typescript": "~3.9.3"
   }
 }
