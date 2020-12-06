@@ -4,6 +4,7 @@ import StringField from './fields/StringField'
 import NumberField from './fields/NumberField'
 import ObjectField from './fields/ObjectField'
 import { retrieveSchema } from './utils'
+
 export default defineComponent({
   name: 'SchemaItems',
   props: {

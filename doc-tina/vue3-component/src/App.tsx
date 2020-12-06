@@ -4,6 +4,7 @@ import { createUseStyles } from 'vue-jss'
 import MonacoEditor from './components/MonacoEdit'
 
 import demos from './demo'
+import simple from "./demo/index"
 
 import SchemaForm from '../lib'
 // import themeDefault from '../lib/theme-default'
@@ -75,7 +76,7 @@ const useStyles = createUseStyles({
 
 export default defineComponent({
   setup() {
-    const selectedRef: Ref<number> = ref(0)
+    const selectedRef: Ref<number> = ref(1)
 
     const demo: {
       schema: Schema | null
@@ -97,7 +98,7 @@ export default defineComponent({
 
     watchEffect(() => {
       const index = selectedRef.value
-      const d: any = demos[index]
+      const d: any = simple[index]
       demo.schema = d.schema
       demo.data = d.default
       demo.uiSchema = d.uiSchema
@@ -112,16 +113,18 @@ export default defineComponent({
     const classesRef = useStyles()
 
     const handleChange = (v: any) => {
-      console.log(v)
+
       demo.data = v.data
       demo.dataCode = toJson(v.data)
+      console.log(toJson(v.data))
     }
 
     function handleCodeChange(filed: 'schema' | 'data' | 'uiSchema', value: string) {
       try {
+        console.log(value)
         const json = JSON.parse(value)
         demo[filed] = json
-        ;(demo as any)[`${filed}Code`] = value
+          ; (demo as any)[`${filed}Code`] = value
       } catch (err) {
         // some thing
       }
@@ -153,7 +156,7 @@ export default defineComponent({
           <div class={classes.menu}>
             <h1>Vue3 JsonSchema Form</h1>
             <div>
-              {demos.map((demo, index) => (
+              {simple.map((demo, index) => (
                 <button
                   class={{
                     [classes.menuButton]: true,
