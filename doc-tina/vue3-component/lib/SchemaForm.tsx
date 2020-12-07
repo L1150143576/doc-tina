@@ -21,16 +21,15 @@ export default defineComponent({
 
   setup(props, { slots, emit, attrs }) {
     const handleChange = (v: any) => {
-
       props.onChange(v)
     }
     const context: any = reactive({
-      SchemaItems
+      SchemaItems,
     })
     provide(SchemaFormContextKey, context)
     return () => {
-      console.log(props)
-      const { schema, value = 1 } = props
+      const { schema, value } = props
+      console.log(value)
       return <SchemaItems schema={schema} rootSchema={schema} value={value} onChange={handleChange} />
     }
   },

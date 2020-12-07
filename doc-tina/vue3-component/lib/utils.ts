@@ -90,6 +90,7 @@ export function retrieveSchema(
       formData
     );
   }
+  console.log(resolvedSchema)
   return resolvedSchema;
 }
 
@@ -189,12 +190,12 @@ function resolveDependencies(
   if ("oneOf" in resolvedSchema) {
     resolvedSchema =
       resolvedSchema.oneOf[
-        getMatchingOption(formData, resolvedSchema.oneOf, rootSchema)
+      getMatchingOption(formData, resolvedSchema.oneOf, rootSchema)
       ];
   } else if ("anyOf" in resolvedSchema) {
     resolvedSchema =
       resolvedSchema.anyOf[
-        getMatchingOption(formData, resolvedSchema.anyOf, rootSchema)
+      getMatchingOption(formData, resolvedSchema.anyOf, rootSchema)
       ];
   }
   return processDependencies(

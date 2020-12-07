@@ -4,7 +4,7 @@ import { createUseStyles } from 'vue-jss'
 import MonacoEditor from './components/MonacoEdit'
 
 import demos from './demo'
-import simple from "./demo/index"
+import simple from './demo/index'
 
 import SchemaForm from '../lib'
 // import themeDefault from '../lib/theme-default'
@@ -113,10 +113,9 @@ export default defineComponent({
     const classesRef = useStyles()
 
     const handleChange = (v: any) => {
-
-      demo.data = v.data
-      demo.dataCode = toJson(v.data)
-      console.log(toJson(v.data))
+      demo.data = v
+      demo.dataCode = toJson(v)
+      console.log(toJson(v))
     }
 
     function handleCodeChange(filed: 'schema' | 'data' | 'uiSchema', value: string) {
@@ -124,7 +123,7 @@ export default defineComponent({
         console.log(value)
         const json = JSON.parse(value)
         demo[filed] = json
-          ; (demo as any)[`${filed}Code`] = value
+        ;(demo as any)[`${filed}Code`] = value
       } catch (err) {
         // some thing
       }
