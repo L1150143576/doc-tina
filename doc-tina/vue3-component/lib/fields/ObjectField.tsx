@@ -27,7 +27,7 @@ export default defineComponent({
       if (v === undefined) {
         delete value[key]
       } else {
-        value[key] += v.data
+        value[key] = v.data
       }
       props.onChange(value)
     }

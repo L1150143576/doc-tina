@@ -29,7 +29,6 @@ export default defineComponent({
     provide(SchemaFormContextKey, context)
     return () => {
       const { schema, value } = props
-      console.log(value)
       return <SchemaItems schema={schema} rootSchema={schema} value={value} onChange={handleChange} />
     }
   },

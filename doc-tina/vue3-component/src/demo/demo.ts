@@ -1,3 +1,4 @@
+
 // import PasswordWidget from '../components/PasswordWiget'
 
 export default {
