@@ -11,9 +11,10 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env"
-    ],
+    // "types": [
+    //   "webpack-env",
+    //   "jest", "node"
+    // ],
     "paths": {
       "@/*": [
         "src/*"
