@@ -3,7 +3,6 @@ import { createUseStyles } from 'vue-jss'
 
 import MonacoEditor from './components/MonacoEdit'
 
-import demos from './demo'
 import simple from './demo/index'
 
 import SchemaForm from '../lib'

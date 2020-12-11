@@ -47,7 +47,6 @@ request.interceptors.response.use(
       tryHideFullScreenLoading()
     }
     const resultCode = Number(response.data.code)
-
     if (resultCode === 0) return response.data.data
     return response
   },

@@ -2167,6 +2167,7 @@ var sortArray = function (nums) {
   return merge(sortArray(left), sortArray(right))
 
 }
+
 var merge = (left, right) => {
   let result = []
   while (left.length && right.length) {
@@ -2183,6 +2184,45 @@ var merge = (left, right) => {
     result.push(right.shift())
   return result
 }
+/**
+ * 插入排序
+ * @param {Array} nums 
+ */
+var sortArray = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i; j > 0; j--) {
+      if (nums[j] > nums[j - 1]) {
+        var temp = nums[j - 1]
+        nums[j - 1] = nums[j]
+        nums[j] = temp
+      }
+    }
+
+  }
+  console.log(nums)
+}
+
+/**
+ * 选择排序
+ * @param {*} arr 
+ */
+var sortArray = function (arr) {
+  var len = arr.length;
+  var minIndex, temp;
+  for (var i = 0; i < len - 1; i++) {
+    minIndex = i;
+    for (var j = i + 1; j < len; j++) {
+      if (arr[j] < arr[minIndex]) {     // 寻找最小的数
+        minIndex = j;                 // 将最小数的索引保存
+      }
+    }
+    temp = arr[i];
+    arr[i] = arr[minIndex];
+    arr[minIndex] = temp;
+  }
+  return arr;
+}
+
 // 1431. 拥有最多糖果的孩子
 // 给你一个数组 candies 和一个整数 extraCandies ，其中 candies[i] 代表第 i 个孩子拥有的糖果数目。
 
@@ -2340,4 +2380,102 @@ var isPossible = function (nums) {
     }
   }
   return true;
+};
+
+// 1436. 旅行终点站
+// 给你一份旅游线路图，该线路图中的旅行线路用数组 paths 表示，其中 paths[i] = [cityAi, cityBi] 表示该线路将会从 cityAi 直接前往 cityBi 。请你找出这次旅行的终点站，即没有任何可以通往其他城市的线路的城市。
+
+// 题目数据保证线路图会形成一条不存在循环的线路，因此只会有一个旅行终点站。
+
+
+
+// 示例 1：
+
+// 输入：paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]
+// 输出："Sao Paulo" 
+// 解释：从 "London" 出发，最后抵达终点站 "Sao Paulo" 。本次旅行的路线是 "London" -> "New York" -> "Lima" -> "Sao Paulo" 。
+// 示例 2：
+
+// 输入：paths = [["B","C"],["D","B"],["C","A"]]
+// 输出："A"
+// 解释：所有可能的线路是：
+// "D" -> "B" -> "C" -> "A". 
+// "B" -> "C" -> "A". 
+// "C" -> "A". 
+// "A". 
+// 显然，旅行终点站是 "A" 。
+// 示例 3：
+
+// 输入：paths = [["A","Z"]]
+// 输出："Z"
+// 提示：
+
+// 1 <= paths.length <= 100
+// paths[i].length == 2
+// 1 <= cityAi.length, cityBi.length <= 10
+// cityAi != cityBi
+// 所有字符串均由大小写英文字母和空格字符组成。
+
+var destCity = function (paths) {
+  var temp = [].concat.apply([], paths)
+  let count = temp.reduce(function (prev, next) {
+    prev[next] = (prev[next] + 1) || 1;
+    return prev;
+  }, {})
+  let min = 1
+  let result;
+  for (var prop in count) {
+    if (count[prop] == min && temp.indexOf(prop) % 2 !== 0) {
+      result = prop
+    }
+  }
+  return result
+};
+
+arr = [["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]
+destCity(arr)
+
+// 剑指 Offer 27. 二叉树的镜像
+// 请完成一个函数，输入一个二叉树，该函数输出它的镜像。
+
+// 例如输入：
+
+//      4
+//    /   \
+//   2     7
+//  / \   / \
+// 1   3 6   9
+// 镜像输出：
+
+//      4
+//    /   \
+//   7     2
+//  / \   / \
+// 9   6 3   1
+// 示例 1：
+
+// 输入：root = [4,2,7,1,3,6,9]
+// 输出：[4,7,2,9,6,3,1]
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var mirrorTree = function (root) {
+  if (!root) {
+    return null
+  }
+
+  const right = root.right
+
+  root.right = mirrorTree(root.left);
+  root.left = mirrorTree(right);
+
+  return root
 };

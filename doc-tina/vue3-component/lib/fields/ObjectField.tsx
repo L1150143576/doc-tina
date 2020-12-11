@@ -1,6 +1,6 @@
 import { defineComponent, inject, DefineComponent, ExtractPropTypes } from 'vue'
-import { FieldPropsDefine } from '../type'
-import { SchemaFormContextKey } from '../context'
+import { FieldPropsDefine, CommonFieldType } from '../type'
+import { SchemaFormContextKey, useVJSFContext } from '../context'
 import { isObject } from '../utils'
 const schema = {
   type: 'object',
@@ -13,21 +13,22 @@ const schema = {
     },
   },
 }
-type SchemaItemDefine = DefineComponent<typeof FieldPropsDefine>
+
 export default defineComponent({
   name: 'ObjectField',
   props: FieldPropsDefine,
   setup(props) {
-    const context: { SchemaItems: SchemaItemDefine } | undefined = inject(SchemaFormContextKey)
-    if (!context) {
-      throw Error('SchemaForm should be used')
-    }
+    const context = useVJSFContext()
     const handleChange = (key: string, v: any) => {
       const value: any = isObject(props.value) ? props.value : {}
       if (v === undefined) {
         delete value[key]
       } else {
-        value[key] = v.data
+        // if (value[key]) {
+        //   value[key] = v
+        // } else {
+        value[key] = v
+        // }
       }
       props.onChange(value)
     }
@@ -36,6 +37,7 @@ export default defineComponent({
       const { SchemaItems } = context
       const properties = schema.properties || {}
       const currentvalue: any = isObject(value) ? value : {}
+      console.log(properties)
       return Object.keys(properties).map((k: string, index: number) => (
         <SchemaItems
           schema={properties[k]}
