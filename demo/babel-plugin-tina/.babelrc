@@ -1,0 +1,16 @@
+  
+{
+  "plugins": [
+    [
+      "./babel-plugin-console-clear.js",
+      {
+        "ignore": [
+          "time",
+          "timeEnd"
+        ]
+      },
+  
+    ],
+    "./babel-plugin-calculate-number.js"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "babel-plugin-tina",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "luoxiaoting",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@types/big.js": "^6.0.2",
+    "babel-core": "^6.26.3",
+    "babel-types": "^6.26.0"
+  }
+}
