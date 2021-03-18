@@ -9,11 +9,19 @@ module.exports={
             {
                 test:/\.jpg$/,
                 use:{
-                    loader:'file-loader',
+                    loader:'url-loader',
                     options:{
-                        name:'[name].[ext]'
+                        //placeholder占位符
+                        name:'[name].[ext]',
+                        outputPath:"images/",
+                        limit:10240
                     }
                 }
+            },
+            {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
+                
             }
         ]
     },
