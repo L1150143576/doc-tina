@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>双向绑定极简版</title>
+</head>
+<body>
+  <div>
+      <input id="input" />
+      <span id="show"></span>
+  </div>
+  <script>
+      const data = {};
+      const input = document.getElementById('input');
+      Object.defineProperty(data, 'source', {
+          configurable: true,
+          get: function() {
+              return input.value
+          },
+          set: function(newValue) {
+              input.value = newValue;
+              document.getElementById('show').innerHTML = "Tina say "+newValue;
+          }
+      });
+      input.onchange = function(e) {
+          data.source = e.target.value;
+      }
+  </script>
+</body>
+</html>

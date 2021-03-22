@@ -13,11 +13,7 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-<<<<<<< HEAD
-      "jest", "node","mocha"
-=======
       "jest", "node"
->>>>>>> a65ea108fddb81c92f3b433121df6a8e683f0b58
     ],
     "paths": {
       "@/*": [
