@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 module.exports = {
   mode: "development",
@@ -28,4 +29,10 @@ module.exports = {
     filename: "bundle.js", //打包文件名
     path: path.resolve(__dirname, "bundle"), //打包出的文件放到哪个目录下
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "My App",
+      filename: "index.[contenthash].html",
+    }),
+  ],
 };
