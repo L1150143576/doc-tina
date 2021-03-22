@@ -4,6 +4,9 @@ module.exports={
     entry:{
         main:'./src/index.js'
     },
+    devServer:{
+      contentBase:'./dist'
+    },
     module:{
         rules:[
             {
@@ -26,7 +29,11 @@ module.exports={
         ]
     },
     output:{
-        filename:'bundle.js',//打包文件名
+        publicPath:'/',
+        chunkFilename: (pathData) => {
+            return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
+          },
+        // filename:'bundle.js',//打包文件名
         path:path.resolve(__dirname,'bundle')//打包出的文件放到哪个目录下
     },
 }
