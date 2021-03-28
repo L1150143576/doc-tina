@@ -1,5 +1,6 @@
 const path=require('path')
 const HtmlWebpackPlugin=require("html-webpack-plugin")
+const webpack=require("webpack")
 module.exports={
     mode:"development",
     entry:{
@@ -31,7 +32,11 @@ module.exports={
     },
     plugins:[new HtmlWebpackPlugin({
        template:'./src/index.html'
-    })],
+    }),
+    new webpack.ProvidePlugin({
+      '$':'jquery'
+    })
+  ],
     optimization:{
       splitChunks:{
         chunks: 'all',//分割打包同步和异步代码 同步还需要在cacheGroups里面设置
@@ -47,7 +52,7 @@ module.exports={
             test: /[\\/]node_modules[\\/]/,//从modules引入的库单独打包到vendors文件里面
             priority: -10,
             reuseExistingChunk: true,
-            filename:'vendors.js'
+            name:'vendors'
           },
           default: {
             minChunks: 2,
@@ -60,10 +65,11 @@ module.exports={
     },
     output:{
         publicPath:'./',
-        chunkFilename: (pathData) => {
-            return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
-          },
-        // filename:'bundle.js',//打包文件名
+        // chunkFilename: (pathData) => {
+        //     return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
+        //   },
+        chunkFilename:'[name].[contenthash].js',
+        filename:'[name].[contenthash].js',//打包文件名
         path:path.resolve(__dirname,'../bundle')//打包出的文件放到哪个目录下
     },
 }
