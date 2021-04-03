@@ -5,7 +5,7 @@ function myNew(func, ...args) {
   }
 
   // 2. 创建新对象
-  const obj = {};
+  const obj = new Object();
 
   // 3. 这个对象的 __proto__ 指向 func 这个类的原型对象
   // 即实例可以访问构造函数原型（constructor.prototype）所在原型链上的属性
