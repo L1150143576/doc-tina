@@ -1,3 +1,2 @@
-export default {
-    name:'罗小婷'
-}
+import msg from "./message.js"
+console.log(`hello ${msg}`)

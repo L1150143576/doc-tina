@@ -19,5 +19,5 @@
 // getComponent().then(ele=>{
 //     document.body.appendChild(ele)
 // })
-import test from './test'
-console.log(test.name)
+// import test from './test'
+console.log("hello world")

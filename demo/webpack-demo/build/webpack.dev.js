@@ -1,6 +1,10 @@
 const path=require('path')
 const HtmlWebpackPlugin=require("html-webpack-plugin")
+const CopyrightWebpackPlugin=require('../plugins/copyright-webpack-plugin.js')
 const webpack=require("webpack")
+function resolve(){
+  return path.resolve(__dirname,'../src')
+}
 module.exports={
     mode:"development",
     entry:{
@@ -27,6 +31,14 @@ module.exports={
                 test:/\.css$/,
                 use:['style-loader','css-loader']
                 
+            },
+            {
+              test:/\.js$/,
+              // exclude:/node_modules/,//不包括node_modules文件
+              include:resolve(),
+              use:[{
+                loader:'babel-loader'
+              }]
             }
         ]
     },
@@ -35,7 +47,8 @@ module.exports={
     }),
     new webpack.ProvidePlugin({
       '$':'jquery'
-    })
+    }),
+    new CopyrightWebpackPlugin()
   ],
     optimization:{
       splitChunks:{
