@@ -36,6 +36,41 @@ function Person(name) {
 Person.prototype.sayName = function () {
   console.log(`My name is ${this.name}`);
 };
-const me = myNew(Person, "jsliang"); // 用来测试第 4 点
-me.sayName(); // My name is jsliang
-console.log(me); // Person {name: 'jsliang'}
+// const me = myNew(Person, "jsliang"); // 用来测试第 4 点
+// me.sayName(); // My name is jsliang
+// console.log(me); // Person {name: 'jsliang'}
+/**
+ * 寄生组合继承
+ */
+function object(o){
+  function Foo(){}
+  Foo.prototype=o;
+  return new Foo()
+}
+
+function inheritPrototype(subtype,supertype){
+  var prototype=object(supertype.prototype)
+  prototype.constructor=subtype
+  subtype.prototype=prototype
+}
+function SuperType(name) {
+  this.name = name;
+  this.colors = ['red', 'blue', 'green'];
+}
+SuperType.prototype.sayName = function() {
+  console.log(this.name);
+}
+function SubType(name, age) {
+  SuperType.call(this, name);
+  this.age = age;
+}
+inheritPrototype(SubType, SuperType);
+
+SubType.prototype.sayAge = function() {
+  console.log(this.age)
+}
+var obj=new SubType("Tina",18)
+console.log(obj.name,obj.age)
+console.log(obj.sayAge())
+console.log(obj.sayName())
+console.log(obj.colors)
