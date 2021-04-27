@@ -36,7 +36,7 @@ import { GlobalDataProps } from './store'
 export default defineComponent({
 	name: 'APP',
 	setup() {
-		const store = useStore<GlobalDataProps>()l
+		const store = useStore<GlobalDataProps>()
 		const userData = computed(() => store.state.user)
 		const isLoading = computed(() => store.state.loading)
 		const error = computed(() => store.state.error)
