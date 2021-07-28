@@ -1,0 +1,7 @@
+2020/11/27 11:14:12 [emerg] 3544#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/11/27 11:14:12 [emerg] 3544#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/11/27 11:14:12 [emerg] 3544#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/11/27 11:14:12 [emerg] 3544#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/11/27 11:14:12 [emerg] 3544#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/11/27 11:14:12 [emerg] 3544#0: still could not bind()
+一些内容

@@ -91,24 +91,28 @@ function myNew(func, ...args) {
   return isObject || isFunction ? result : obj;
 }
 
-// 测试
-function Person() {}
-Person.prototype.name = "Tina";
-Person.prototype.age = "18";
-// 用来测试第 2 点和第 3 点
-Person.prototype.sayName = function () {
-  console.log(`My name is ${this.name}`);
-};
-var proto = Object.create(Person.prototype);
-function Superman() {}
-Superman.prototype = proto;
-Superman.prototype.power = "power";
-Superman.prototype.sayPower = function () {
-  console.log(`My power is ${this.power}`);
-};
-var superman = new Superman("你好");
-console.log(superman.power);
-console.log(superman.name);
-console.log(superman.age);
-console.log(superman.sayPower());
-console.log(superman.sayName());
+var isValid = function(s) {
+	const n = s.length;
+    if (n % 2 === 1) {
+    	return false;
+    }
+    const pairs = new Map([
+        [')','('],
+        [']','['],
+        ['}','{']
+    ]);
+    const stk = [];
+    for(let i=0; i<s.length; i++) {
+    	if (pairs.has(s[i])) {
+         console.log( pairs.get(s[i]))
+        	if (!stk.length || stk[stk.length-1] !== pairs.get(s[i])) {
+            	return false;
+            }
+            stk.pop();
+        } else {
+        	stk.push(s[i]);
+        }
+    }
+    return !stk.length;
+}
+isValid('({})')
