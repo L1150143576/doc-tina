@@ -35,9 +35,9 @@ myPromise.prototype.then=function(onFullfilled,onRejected){
   if(that.status==PENDING){
     that.resolvedQuene.push(onFullfilled)
     that.rejectQuene.push(onRejected)
-  }
-  if(that.status==RESOLVED){
+  }  if(that.status==RESOLVED){
     onFullfilled(that.value)
+
   }
   if(that.status==REJECTED){
     onRejected(that.reason)

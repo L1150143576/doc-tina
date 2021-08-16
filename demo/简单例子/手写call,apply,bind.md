@@ -1,10 +1,10 @@
-## 手写call
+## 手写 call
 
 ```
 Function.prototype.mycall=function(context){
   context.fn=this
   console.log(arguments)
-  const otherSlice=Array.from(arguments).slice(1)
+  const otherSlice=Array.from(arguments).slice(1)// [...argument]
   context.fn(otherSlice)
   const result=context.fn
   delete context.fn
@@ -18,7 +18,10 @@ function test(){
 }
 test.mycall(test)
 ```
-## 手写apply
+
+-
+
+## 手写 apply
 
 ```
 Function.prototype.myapply=function(context,arr){
@@ -40,7 +43,7 @@ function test(){
 test.myapply(test)
 ```
 
-## 手写bind
+## 手写 bind
 
 ```
 Function.prototype.myBind = function(context = globalThis) {
