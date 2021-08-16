@@ -91,28 +91,66 @@ function myNew(func, ...args) {
   return isObject || isFunction ? result : obj;
 }
 
-var isValid = function(s) {
-	const n = s.length;
-    if (n % 2 === 1) {
-    	return false;
+var isValid = function (s) {
+  const n = s.length;
+  if (n % 2 === 1) {
+    return false;
+  }
+  const pairs = new Map([
+    [')', '('],
+    [']', '['],
+    ['}', '{']
+  ]);
+  const stk = [];
+  for (let i = 0; i < s.length; i++) {
+    if (pairs.has(s[i])) {
+      console.log(pairs.get(s[i]))
+      if (!stk.length || stk[stk.length - 1] !== pairs.get(s[i])) {
+        return false;
+      }
+      stk.pop();
+    } else {
+      stk.push(s[i]);
     }
-    const pairs = new Map([
-        [')','('],
-        [']','['],
-        ['}','{']
-    ]);
-    const stk = [];
-    for(let i=0; i<s.length; i++) {
-    	if (pairs.has(s[i])) {
-         console.log( pairs.get(s[i]))
-        	if (!stk.length || stk[stk.length-1] !== pairs.get(s[i])) {
-            	return false;
-            }
-            stk.pop();
-        } else {
-        	stk.push(s[i]);
-        }
-    }
-    return !stk.length;
+  }
+  return !stk.length;
 }
 isValid('({})')
+/**
+ * 冒泡排序
+ * @returns 
+ */
+Array.prototype.bubleSort = function () {
+  let len = this.length
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 0; j < len - 1 - i; j++) {
+      if (this[j] > this[j + 1]) {
+        [this[j], this[j + 1]] = [this[j + 1], this[j]]
+      }
+    }
+  }
+  return this
+}
+let arr = [5, 4, 3, 2, 1]
+// console.log(arr.bubleSort());
+
+/**
+ * 插入排序
+ * @returns 
+ */
+Array.prototype.insertSort = function () {
+  let len = this.length
+  for (let i = 0; i < len; i++) {
+    let indexMin = i
+    for (let j = i; j < len; j++) {
+      if (this[j] < this[indexMin]) {
+        indexMin = j
+      }
+    }
+    if(this[i]!=this[indexMin]){
+      [this[i], this[indexMin]] = [this[indexMin], this[i]]
+    }
+  }
+  return this
+}
+console.log(arr.insertSort());
