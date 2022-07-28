@@ -153,4 +153,3 @@ Array.prototype.insertSort = function () {
   }
   return this
 }
-console.log(arr.insertSort());
