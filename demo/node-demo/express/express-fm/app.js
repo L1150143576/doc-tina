@@ -3,7 +3,7 @@
  * @Description: Do not edit
  * @Date: 2022-09-14 16:39:49
  * @LastEditors: luoxiaoting
- * @LastEditTime: 2022-09-15 14:19:39
+ * @LastEditTime: 2022-09-16 14:42:22
  * @FilePath: \demo\node-demo\express\express-fm\app.js
  */
 const express=require('express')
@@ -55,7 +55,6 @@ app.put('/:id',async (req,res)=>{
       userinfo[userID-1]=user
       if(!await db.insertDb(userinfo))res.status(200).json({msg:'用户信息修改成功！'})
      }
-
   }catch(err){
     res.status(500).json({err})
   }
